@@ -2,16 +2,6 @@
 
 @import 'config';
 
-// Variables
-:root {
-	--size: 1rem;
-	--tv-screen-color: linear-gradient(to bottom right, #4b4b4b, #000);
-	--tv-screen-border: #272725;
-	--tv-speaker-color: linear-gradient(to right, #171715, #161614);
-	--tv-leg-color: linear-gradient(to top, #333 0% 20%, #000 60%);
-	--rgba: rgba(0, 0, 0, 0.4);
-}
-
 *,
 *::before,
 *::after {
@@ -26,126 +16,311 @@ body {
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Vollkorn', serif;
-	// background: #ededed;
-	background: #333;
+	background: $body-color;
+	perspective: 800px;
+}
+
+.container {
+	padding: 4rem;
 }
 
 .tv-set {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
 	.tv {
 		position: relative;
+	}
 
-		.tv-outer {
-			display: flex;
-			justify-content: center;
-			width: calc(var(--size) * 29);
-			height: calc(var(--size) * 14.5);
-			background-image: var(--tv-speaker-color);
-			border-radius: 0.3125rem;
+	.tv-outer {
+		display: flex;
+		justify-content: center;
+		width: calc(#{$size} * 29);
+		height: calc(#{$size} * 14.5);
+		background-image: $tv-speaker-color;
+		border-radius: calc(#{$size} * 0.3125);
 
-			// The Tv Screen
-			.tv-screen {
-				position: relative;
-				width: calc(var(--size) * 25);
-				height: 100%;
-				background-image: var(--tv-screen-color);
-				border: calc(var(--size) * 0.4375) solid var(--tv-screen-border);
-				border-radius: 0.3125rem;
-				box-shadow: inset 0.0625rem 0 0.08rem 0.1rem rgb(0, 0, 0),
-					-0.0625rem 0 3px rgba($color: #fff, $alpha: 0.5);
-
-				// The reflection of light on the bottom
-				&::before {
-					content: '';
-					position: absolute;
-					bottom: 0;
-					width: 100%;
-					height: 0.125rem;
-					background-image: linear-gradient(
-						to right,
-						var(--tv-screen-border) 0% 30%,
-						rgba($color: #fff, $alpha: 0.4),
-						var(--tv-screen-border) 70% 100%
-					);
-				}
-
-				// The reflection of light on the right
-				&::after {
-					content: '';
-					position: absolute;
-					right: 0;
-					width: 0.1875rem;
-					height: 100%;
-					background-image: linear-gradient(
-						to bottom,
-						var(--tv-screen-border) 0% 30%,
-						rgba($color: #fff, $alpha: 0.4),
-						var(--tv-screen-border) 70% 100%
-					);
-				}
-			}
+		// The Tv Screen
+		.tv-screen {
+			position: relative;
+			width: calc(#{$size} * 25);
+			height: 100%;
+			background-image: $tv-screen-color;
+			border: calc(#{$size} * 0.4375) solid $tv-screen-border;
+			border-radius: calc(#{$size} * 0.3125);
+			box-shadow: inset calc(#{$size} * 0.0625) 0 calc(#{$size} * 0.08)
+					calc(#{$size} * 0.1) rgb(0, 0, 0),
+				calc(#{$size} * -0.0625) 0 calc(#{$size} * 0.1875)
+					rgba($color: #fff, $alpha: 0.5);
 		}
 
-		.tv-leg {
-			--width: 6rem;
-			--height: 6rem;
-			--depth: 6rem;
+		// The reflection of light on the bottom
+		.tv-screen::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: calc(#{$size} * 0.125);
+			background-image: linear-gradient(
+				to right,
+				$tv-screen-border 0% 30%,
+				rgba($color: #fff, $alpha: 0.4),
+				$tv-screen-border 70% 100%
+			);
+		}
 
-			position: relative;
-			width: var(--width);
-			height: var(--height);
-			background: hsla(0, 0%, 100%, 0.2);
-			transform: rotateX(24deg) rotateY(32deg);
-			transform-style: preserve-3d;
+		// The reflection of light on the right
+		.tv-screen::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: calc(#{$size} * 0.12);
+			height: 100%;
+			background-image: linear-gradient(
+				to bottom,
+				$tv-screen-border 0% 30%,
+				rgba($color: #fff, $alpha: 0.5),
+				$tv-screen-border 70% 100%
+			);
+		}
+	}
 
-			.leg-side {
-				position: absolute;
-				border: 1px solid hsl(0, 0%, 10%);
-			}
+	.tv-leg {
+		$width: calc(#{$size} * 0.5);
+		$height: calc(#{$size} * 0.5);
+		$depth: calc(#{$size} * 9);
 
-			.leg-side-1,
-			.leg-side-2 {
-				--coefficient: -0.5;
+		position: relative;
+		width: $width;
+		height: $height;
+		transform-style: preserve-3d;
+		z-index: -1;
 
-				width: var(--width);
-				height: var(--height);
-				transform: translate3d(0, 0, calc(var(--depth) * var(--coefficient)));
-			}
+		.leg-side {
+			position: absolute;
+			background: $tv-leg-color;
+			// border: 1px solid hsl(0, 0%, 10%);
+		}
 
-			.leg-side-2 {
-				--coefficient: 0.5;
-			}
+		.leg-side-1,
+		.leg-side-2 {
+			width: $width;
+			height: $height;
+		}
 
-			.leg-side-3,
-			.leg-side-4 {
-				--rotation: 90deg;
+		.leg-side-1 {
+			$coefficient: -0.5;
+			transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+		}
 
-				width: var(--depth);
-				height: var(--height);
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%) rotateY(var(--rotation))
-					translate3d(0, 0, calc(var(--width) * -0.5));
-			}
+		.leg-side-2 {
+			$coefficient: 0.5;
+			transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+		}
 
-			.leg-side-4 {
-				--rotation: -90deg;
-			}
+		.leg-side-3,
+		.leg-side-4 {
+			width: $depth;
+			height: $height;
+			left: 50%;
+			top: 50%;
+		}
 
-			.left-side-5,
-			.left-side-6 {
-                --rotation: -90deg
+		.leg-side-3 {
+			$rotation: 90deg;
+			transform: translate(-50%, -50%) rotateY($rotation)
+				translate3d(0, 0, calc(#{$width} * -0.5));
+		}
 
-				width: var(--width);
-				height: var(--depth);
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%) rotateX(var(--rotation))
-					translate3d(0, 0, calc(var(--height) * -0.5));
-			}
+		.leg-side-4 {
+			$rotation: -90deg;
+			transform: translate(-50%, -50%) rotateY($rotation)
+				translate3d(0, 0, calc(#{$width} * -0.5));
+		}
 
-            .left-side-6 {
-                --rotation: 90deg;
-            }
+		.leg-side-5,
+		.leg-side-6 {
+			width: $width;
+			height: $depth;
+			left: 50%;
+			top: 50%;
+		}
+
+		.leg-side-5 {
+			$rotation: -90deg;
+			transform: translate(-50%, -50%) rotateX($rotation)
+				translate3d(0, 0, calc(#{$height} * -0.5));
+		}
+
+		.leg-side-6 {
+			$rotation: 90deg;
+			transform: translate(-50%, -50%) rotateX($rotation)
+				translate3d(0, 0, calc(#{$height} * -0.5));
+		}
+	}
+
+	.left-leg {
+		left: 13%;
+		transform: rotateX(-20deg) rotateY(-15deg);
+	}
+
+	.right-leg {
+		top: calc(#{$size} * -0.5);
+		right: -87%;
+		transform: rotateX(-20deg) rotateY(10deg);
+	}
+
+	// Tv Stand
+	.tv-stand {
+		top: calc(#{$size} * 1.5);
+		position: relative;
+		width: calc(#{$size} * 41.437);
+		height: calc(#{$size} * 6.625);
+		z-index: -2;
+	}
+
+	.stand {
+		position: absolute;
+		// background: $tv-stand-color;
+		background: #fff;
+		border: calc(#{$size} * 0.375) solid #fff;
+	}
+
+	.top,
+	.middle,
+	.bottom {
+		width: calc(100% - calc(#{$size} * 1.57));
+		left: 1.9%;
+		height: calc(#{$size} * 0.4375);
+	}
+
+	.top {
+		top: 0;
+		box-shadow: 0 calc(#{$size} * 0.15) 0 $tv-stand-color;
+	}
+
+	.middle {
+		top: 50%;
+		transform: translateY(-50%);
+		box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+	}
+
+	.bottom {
+		bottom: 0;
+		box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+	}
+
+	.left,
+	.right {
+		width: calc(#{$size} * 0.4375);
+		height: 100%;
+		z-index: -2;
+	}
+
+	.left {
+		box-shadow: calc(#{$size} * 0.625) 0 0 $tv-stand-color;
+	}
+
+	.right {
+		right: 0;
+		box-shadow: calc(#{$size} * -0.625) 0 0 $tv-stand-color;
+	}
+}
+
+// Everything concerning the quote :)
+.showing-right-now {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: calc(#{$size} * 3) calc(#{$size} * 2) calc(#{$size} * 0.8);
+
+	.fa-quote-left {
+		position: absolute;
+		top: 0;
+		font-size: 5rem;
+		color: rgba($color: #fff, $alpha: 0.05);
+	}
+}
+
+.quote-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.quote-n-author {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 50%;
+	padding-bottom: calc(#{$size} * 1);
+
+	#quote {
+		position: relative;
+		font-size: 1rem;
+		font-weight: 600;
+		height: 50%;
+		// text-align: center;
+		color: #eee;
+	}
+
+	#author {
+		text-align: right;
+		font-size: 1rem;
+		font-style: italic;
+		color: #ddd;
+	}
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.btn {
+		padding: 0.36rem 0.7rem;
+		background: $body-color;
+		border-radius: 0.4rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+		cursor: pointer;
+	}
+
+	.new-quote {
+		background: $body-color;
+		color: #000;
+	}
+
+	.tweet {
+		@extend .btn;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 2.3rem;
+		height: 2.3rem;
+		font-size: 1.1rem;
+		text-decoration: none;
+		background: #1da1f2;
+		color: #fff;
+		border-radius: 50%;
+		transform: scale(1);
+		transition: all $transition-delay;
+
+		&:hover {
+			transform: scale(0.93);
+			background: #fff;
+			color: #1da1f2;
+		}
+
+		&:focus {
+			transform: scale(0.93);
+			background: #fff;
+			color: #1da1f2;
+			outline: 2px dashed #1da1f2;
 		}
 	}
 }
