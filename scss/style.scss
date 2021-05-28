@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
 
 @import 'config';
 
@@ -15,9 +15,11 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	font-family: 'Vollkorn', serif;
+	font-family: 'Quicksand', sans-serif;
 	background: $body-color;
 	perspective: 800px;
+	transition: all $transition-delay;
+	overflow-x: hidden;
 }
 
 .container {
@@ -235,11 +237,12 @@ body {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	padding: calc(#{$size} * 3) calc(#{$size} * 2) calc(#{$size} * 0.8);
+	padding: calc(#{$size} * 2) calc(#{$size} * 1.5) calc(#{$size} * 0.5);
 
 	.fa-quote-left {
 		position: absolute;
 		top: 0;
+		left: 5%;
 		font-size: 5rem;
 		color: rgba($color: #fff, $alpha: 0.05);
 	}
@@ -257,22 +260,35 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	min-height: 50%;
-	padding-bottom: calc(#{$size} * 1);
+	padding-bottom: calc(#{$size} * 0.5);
 
 	#quote {
 		position: relative;
-		font-size: 1rem;
+		font-size: 0.94rem;
 		font-weight: 600;
-		height: 50%;
-		// text-align: center;
-		color: #eee;
+		height: 76%;
+		line-height: 1.5;
+		overflow-y: scroll;
+		padding-right: 0.3rem;
+		color: #fff;
+		transition: all $transition-delay;
+
+		&::-webkit-scrollbar {
+			width: 1px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			width: 1px;
+			background: rgb(110, 90, 90);
+		}
 	}
 
 	#author {
 		text-align: right;
 		font-size: 1rem;
 		font-style: italic;
-		color: #ddd;
+		color: #ccc;
+		padding-top: 0.8rem;
 	}
 }
 
@@ -280,6 +296,8 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	border-top: 1px solid #eee;
+	padding-top: 0.6rem;
 
 	.btn {
 		padding: 0.36rem 0.7rem;
@@ -288,11 +306,28 @@ body {
 		font-size: 0.9rem;
 		font-weight: 500;
 		cursor: pointer;
+		transform: scale(1);
 	}
 
 	.new-quote {
-		background: $body-color;
-		color: #000;
+		background: #fff;
+		color: #111;
+		transition: all $transition-delay;
+		font-weight: 600;
+		border: 2px solid transparent;
+
+		&:hover {
+			background: darken($color: #fff, $amount: 90);
+			color: #ddd;
+		}
+
+		&:focus {
+			background: darken($color: #fff, $amount: 90);
+			color: #ddd;
+			border: 2px dashed #fff;
+			transform: scale(1.07);
+			outline: none;
+		}
 	}
 
 	.tweet {
@@ -307,11 +342,10 @@ body {
 		background: #1da1f2;
 		color: #fff;
 		border-radius: 50%;
-		transform: scale(1);
 		transition: all $transition-delay;
 
 		&:hover {
-			transform: scale(0.93);
+			transform: scale(0.9);
 			background: #fff;
 			color: #1da1f2;
 		}
@@ -320,7 +354,58 @@ body {
 			transform: scale(0.93);
 			background: #fff;
 			color: #1da1f2;
-			outline: 2px dashed #1da1f2;
+			outline: 3px dotted #1da1f2;
 		}
+	}
+}
+
+.colors {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	left: 0;
+	top: 0;
+	width: 7%;
+	height: 85%;
+
+	button {
+		width: calc(#{$size} * 0.7);
+		height: calc(#{$size} * 0.7);
+		border-radius: 50%;
+		border: 0;
+		cursor: pointer;
+		transform: scale(1);
+		transition: all $transition-delay;
+
+		&:hover {
+			transform: scale(1.6);
+		}
+
+		&:focus {
+			transform: scale(1.6);
+			outline: 1px dotted #fff;
+		}
+	}
+
+	.champagne {
+		background: #ffe5d9;
+	}
+
+	.charcoal {
+		background: #264653;
+	}
+
+	.burnt-sienna {
+		background: #e76f51;
+	}
+
+	.persian-green {
+		background: #2a9d8f;
+	}
+
+	.orange-yellow {
+		background: #e9c46a;
 	}
 }
