@@ -1,0 +1,592 @@
+@import 'config';
+
+// Media query for screen sizes lower than 768px
+@media screen and (max-width: 48rem) {
+	$size: 0.65rem;
+
+	body {
+		perspective: 800px;
+		overflow-x: hidden;
+	}
+
+	.tv-set {
+		.tv {
+			position: relative;
+		}
+
+		.tv-outer {
+			width: calc(#{$size} * 29);
+			height: calc(#{$size} * 14.5);
+			border-radius: calc(#{$size} * 0.3125);
+
+			// The Tv Screen
+			.tv-screen {
+				width: calc(#{$size} * 25);
+				border: calc(#{$size} * 0.4375) solid $tv-screen-border;
+				border-radius: calc(#{$size} * 0.3125);
+				box-shadow: inset calc(#{$size} * 0.0625) 0 calc(#{$size} * 0.08)
+						calc(#{$size} * 0.1) rgb(0, 0, 0),
+					calc(#{$size} * -0.0625) 0 calc(#{$size} * 0.1875)
+						rgba($color: #fff, $alpha: 0.5);
+			}
+
+			// The reflection of light on the bottom
+			.tv-screen::before {
+				height: calc(#{$size} * 0.125);
+			}
+
+			// The reflection of light on the right
+			.tv-screen::after {
+				width: calc(#{$size} * 0.12);
+			}
+		}
+
+		.tv-leg {
+			$width: calc(#{$size} * 0.5);
+			$height: calc(#{$size} * 0.5);
+			$depth: calc(#{$size} * 9);
+
+			width: $width;
+			height: $height;
+
+			.leg-side-1,
+			.leg-side-2 {
+				width: $width;
+				height: $height;
+			}
+
+			.leg-side-1 {
+				$coefficient: -0.5;
+				transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+			}
+
+			.leg-side-2 {
+				$coefficient: 0.5;
+				transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+			}
+
+			.leg-side-3,
+			.leg-side-4 {
+				width: $depth;
+				height: $height;
+				left: 50%;
+				top: 50%;
+			}
+
+			.leg-side-3 {
+				$rotation: 90deg;
+				transform: translate(-50%, -50%) rotateY($rotation)
+					translate3d(0, 0, calc(#{$width} * -0.5));
+			}
+
+			.leg-side-4 {
+				$rotation: -90deg;
+				transform: translate(-50%, -50%) rotateY($rotation)
+					translate3d(0, 0, calc(#{$width} * -0.5));
+			}
+
+			.leg-side-5,
+			.leg-side-6 {
+				width: $width;
+				height: $depth;
+				left: 50%;
+				top: 50%;
+			}
+
+			.leg-side-5 {
+				$rotation: -90deg;
+				transform: translate(-50%, -50%) rotateX($rotation)
+					translate3d(0, 0, calc(#{$height} * -0.5));
+			}
+
+			.leg-side-6 {
+				$rotation: 90deg;
+				transform: translate(-50%, -50%) rotateX($rotation)
+					translate3d(0, 0, calc(#{$height} * -0.5));
+			}
+		}
+
+		.right-leg {
+			top: calc(#{$size} * -0.5);
+		}
+
+		// Tv Stand
+		.tv-stand {
+			top: calc(#{$size} * 1.5);
+			width: calc(#{$size} * 41.437);
+			height: calc(#{$size} * 6.625);
+		}
+
+		.stand {
+			border: calc(#{$size} * 0.375) solid #fff;
+		}
+
+		.top,
+		.middle,
+		.bottom {
+			width: calc(100% - calc(#{$size} * 1.57));
+			left: 1.9%;
+			height: calc(#{$size} * 0.4375);
+		}
+
+		.top {
+			box-shadow: 0 calc(#{$size} * 0.15) 0 $tv-stand-color;
+		}
+
+		.middle {
+			box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+		}
+
+		.bottom {
+			box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+		}
+
+		.left,
+		.right {
+			width: calc(#{$size} * 0.4375);
+		}
+
+		.left {
+			box-shadow: calc(#{$size} * 0.625) 0 0 $tv-stand-color;
+		}
+
+		.right {
+			box-shadow: calc(#{$size} * -0.625) 0 0 $tv-stand-color;
+		}
+	}
+
+	.showing-right-now {
+		padding: calc(#{$size} * 2) calc(#{$size} * 1.5) calc(#{$size} * 0.5);
+
+		.fa-quote-left {
+			font-size: calc(#{$size} * 5);
+		}
+	}
+
+	.quote-n-author {
+		padding-bottom: calc(#{$size} * 0.5);
+
+		#quote {
+			font-size: calc(#{$size} * 0.94);
+			padding-right: calc(#{$size} * 0.3);
+		}
+
+		#author {
+			font-size: $size;
+		}
+	}
+
+	.buttons {
+		.btn {
+			padding: calc(#{$size} * 0.36) calc(#{$size} * 0.7);
+			font-size: calc(#{$size} * 0.9);
+		}
+
+		.tweet {
+			width: calc(#{$size} * 2.3);
+			height: calc(#{$size} * 2.3);
+			font-size: calc(#{$size} * 1.1);
+		}
+	}
+
+	.colors {
+		button {
+			width: calc(#{$size} * 0.7);
+			height: calc(#{$size} * 0.7);
+		}
+	}
+}
+
+// Media query for screen sizes lower than 590px
+@media screen and (max-width: 33.125rem) {
+	$size: 0.5rem;
+
+	body {
+		perspective: 800px;
+		overflow-x: hidden;
+	}
+
+	.tv-set {
+		.tv {
+			position: relative;
+		}
+
+		.tv-outer {
+			width: calc(#{$size} * 29);
+			height: calc(#{$size} * 14.5);
+			border-radius: calc(#{$size} * 0.3125);
+
+			// The Tv Screen
+			.tv-screen {
+				width: calc(#{$size} * 25);
+				border: calc(#{$size} * 0.4375) solid $tv-screen-border;
+				border-radius: calc(#{$size} * 0.3125);
+				box-shadow: inset calc(#{$size} * 0.0625) 0 calc(#{$size} * 0.08)
+						calc(#{$size} * 0.1) rgb(0, 0, 0),
+					calc(#{$size} * -0.0625) 0 calc(#{$size} * 0.1875)
+						rgba($color: #fff, $alpha: 0.5);
+			}
+
+			// The reflection of light on the bottom
+			.tv-screen::before {
+				height: calc(#{$size} * 0.125);
+			}
+
+			// The reflection of light on the right
+			.tv-screen::after {
+				width: calc(#{$size} * 0.12);
+			}
+		}
+
+		.tv-leg {
+			$width: calc(#{$size} * 0.5);
+			$height: calc(#{$size} * 0.5);
+			$depth: calc(#{$size} * 9);
+
+			width: $width;
+			height: $height;
+
+			.leg-side-1,
+			.leg-side-2 {
+				width: $width;
+				height: $height;
+			}
+
+			.leg-side-1 {
+				$coefficient: -0.5;
+				transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+			}
+
+			.leg-side-2 {
+				$coefficient: 0.5;
+				transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+			}
+
+			.leg-side-3,
+			.leg-side-4 {
+				width: $depth;
+				height: $height;
+				left: 50%;
+				top: 50%;
+			}
+
+			.leg-side-3 {
+				$rotation: 90deg;
+				transform: translate(-50%, -50%) rotateY($rotation)
+					translate3d(0, 0, calc(#{$width} * -0.5));
+			}
+
+			.leg-side-4 {
+				$rotation: -90deg;
+				transform: translate(-50%, -50%) rotateY($rotation)
+					translate3d(0, 0, calc(#{$width} * -0.5));
+			}
+
+			.leg-side-5,
+			.leg-side-6 {
+				width: $width;
+				height: $depth;
+				left: 50%;
+				top: 50%;
+			}
+
+			.leg-side-5 {
+				$rotation: -90deg;
+				transform: translate(-50%, -50%) rotateX($rotation)
+					translate3d(0, 0, calc(#{$height} * -0.5));
+			}
+
+			.leg-side-6 {
+				$rotation: 90deg;
+				transform: translate(-50%, -50%) rotateX($rotation)
+					translate3d(0, 0, calc(#{$height} * -0.5));
+			}
+		}
+
+		.right-leg {
+			top: calc(#{$size} * -0.5);
+		}
+
+		// Tv Stand
+		.tv-stand {
+			top: calc(#{$size} * 1.5);
+			width: calc(#{$size} * 41.437);
+			height: calc(#{$size} * 6.625);
+		}
+
+		.stand {
+			border: calc(#{$size} * 0.375) solid #fff;
+		}
+
+		.top,
+		.middle,
+		.bottom {
+			width: calc(100% - calc(#{$size} * 1.57));
+			left: 1.9%;
+			height: calc(#{$size} * 0.4375);
+		}
+
+		.top {
+			box-shadow: 0 calc(#{$size} * 0.15) 0 $tv-stand-color;
+		}
+
+		.middle {
+			box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+		}
+
+		.bottom {
+			box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+		}
+
+		.left,
+		.right {
+			width: calc(#{$size} * 0.4375);
+		}
+
+		.left {
+			box-shadow: calc(#{$size} * 0.625) 0 0 $tv-stand-color;
+		}
+
+		.right {
+			box-shadow: calc(#{$size} * -0.625) 0 0 $tv-stand-color;
+		}
+	}
+
+	.showing-right-now {
+		padding: calc(#{$size} * 2) calc(#{$size} * 1.5) calc(#{$size} * 0.5);
+
+		.fa-quote-left {
+			font-size: calc(#{$size} * 5);
+		}
+	}
+
+	.quote-n-author {
+		padding-bottom: calc(#{$size} * 0.5);
+
+		#quote {
+			font-size: calc(#{$size} * 0.94);
+			padding-right: calc(#{$size} * 0.3);
+		}
+
+		#author {
+			font-size: $size;
+		}
+	}
+
+	.buttons {
+		.btn {
+			padding: calc(#{$size} * 0.36) calc(#{$size} * 0.7);
+			font-size: calc(#{$size} * 0.9);
+		}
+
+		.tweet {
+			width: calc(#{$size} * 2.3);
+			height: calc(#{$size} * 2.3);
+			font-size: calc(#{$size} * 1.1);
+		}
+	}
+
+	.colors {
+		button {
+			width: calc(#{$size} * 0.7);
+			height: calc(#{$size} * 0.7);
+		}
+	}
+}
+
+// Media query for screen sizes lower than 360px
+@media screen and (max-width: 22.5rem) {
+	$size: 0.4rem;
+
+	body {
+		perspective: 800px;
+		overflow-x: hidden;
+	}
+
+	.tv-set {
+		.tv {
+			position: relative;
+		}
+
+		.tv-outer {
+			width: calc(#{$size} * 29);
+			height: calc(#{$size} * 14.5);
+			border-radius: calc(#{$size} * 0.3125);
+
+			// The Tv Screen
+			.tv-screen {
+				width: calc(#{$size} * 25);
+				border: calc(#{$size} * 0.4375) solid $tv-screen-border;
+				border-radius: calc(#{$size} * 0.3125);
+				box-shadow: inset calc(#{$size} * 0.0625) 0 calc(#{$size} * 0.08)
+						calc(#{$size} * 0.1) rgb(0, 0, 0),
+					calc(#{$size} * -0.0625) 0 calc(#{$size} * 0.1875)
+						rgba($color: #fff, $alpha: 0.5);
+			}
+
+			// The reflection of light on the bottom
+			.tv-screen::before {
+				height: calc(#{$size} * 0.125);
+			}
+
+			// The reflection of light on the right
+			.tv-screen::after {
+				width: calc(#{$size} * 0.12);
+			}
+		}
+
+		.tv-leg {
+			$width: calc(#{$size} * 0.5);
+			$height: calc(#{$size} * 0.5);
+			$depth: calc(#{$size} * 9);
+
+			width: $width;
+			height: $height;
+
+			.leg-side-1,
+			.leg-side-2 {
+				width: $width;
+				height: $height;
+			}
+
+			.leg-side-1 {
+				$coefficient: -0.5;
+				transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+			}
+
+			.leg-side-2 {
+				$coefficient: 0.5;
+				transform: translate3d(0, 0, calc(#{$depth} * #{$coefficient}));
+			}
+
+			.leg-side-3,
+			.leg-side-4 {
+				width: $depth;
+				height: $height;
+				left: 50%;
+				top: 50%;
+			}
+
+			.leg-side-3 {
+				$rotation: 90deg;
+				transform: translate(-50%, -50%) rotateY($rotation)
+					translate3d(0, 0, calc(#{$width} * -0.5));
+			}
+
+			.leg-side-4 {
+				$rotation: -90deg;
+				transform: translate(-50%, -50%) rotateY($rotation)
+					translate3d(0, 0, calc(#{$width} * -0.5));
+			}
+
+			.leg-side-5,
+			.leg-side-6 {
+				width: $width;
+				height: $depth;
+				left: 50%;
+				top: 50%;
+			}
+
+			.leg-side-5 {
+				$rotation: -90deg;
+				transform: translate(-50%, -50%) rotateX($rotation)
+					translate3d(0, 0, calc(#{$height} * -0.5));
+			}
+
+			.leg-side-6 {
+				$rotation: 90deg;
+				transform: translate(-50%, -50%) rotateX($rotation)
+					translate3d(0, 0, calc(#{$height} * -0.5));
+			}
+		}
+
+		.right-leg {
+			top: calc(#{$size} * -0.5);
+		}
+
+		// Tv Stand
+		.tv-stand {
+			top: calc(#{$size} * 1.5);
+			width: calc(#{$size} * 41.437);
+			height: calc(#{$size} * 6.625);
+		}
+
+		.stand {
+			border: calc(#{$size} * 0.375) solid #fff;
+		}
+
+		.top,
+		.middle,
+		.bottom {
+			width: calc(100% - calc(#{$size} * 1.57));
+			left: 1.9%;
+			height: calc(#{$size} * 0.4375);
+		}
+
+		.top {
+			box-shadow: 0 calc(#{$size} * 0.15) 0 $tv-stand-color;
+		}
+
+		.middle {
+			box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+		}
+
+		.bottom {
+			box-shadow: 0 calc(#{$size} * -0.625) 0 $tv-stand-color;
+		}
+
+		.left,
+		.right {
+			width: calc(#{$size} * 0.4375);
+		}
+
+		.left {
+			box-shadow: calc(#{$size} * 0.625) 0 0 $tv-stand-color;
+		}
+
+		.right {
+			box-shadow: calc(#{$size} * -0.625) 0 0 $tv-stand-color;
+		}
+	}
+
+	.showing-right-now {
+		padding: calc(#{$size} * 2) calc(#{$size} * 1.5) calc(#{$size} * 0.5);
+
+		.fa-quote-left {
+			font-size: calc(#{$size} * 5);
+		}
+	}
+
+	.quote-n-author {
+		padding-bottom: calc(#{$size} * 0.5);
+
+		#quote {
+			font-size: calc(#{$size} * 0.94);
+			padding-right: calc(#{$size} * 0.3);
+		}
+
+		#author {
+			font-size: $size;
+		}
+	}
+
+	.buttons {
+		.btn {
+			padding: calc(#{$size} * 0.36) calc(#{$size} * 0.7);
+			font-size: calc(#{$size} * 0.9);
+		}
+
+		.tweet {
+			width: calc(#{$size} * 2.3);
+			height: calc(#{$size} * 2.3);
+			font-size: calc(#{$size} * 1.1);
+		}
+	}
+
+	.colors {
+		button {
+			width: calc(#{$size} * 0.7);
+			height: calc(#{$size} * 0.7);
+		}
+	}
+}

@@ -243,7 +243,7 @@ body {
 		position: absolute;
 		top: 0;
 		left: 5%;
-		font-size: 5rem;
+		font-size: calc(#{$size} * 5);
 		color: rgba($color: #fff, $alpha: 0.05);
 	}
 }
@@ -264,12 +264,12 @@ body {
 
 	#quote {
 		position: relative;
-		font-size: 0.94rem;
+		font-size: calc(#{$size} * 0.94);
 		font-weight: 600;
 		height: 76%;
 		line-height: 1.5;
 		overflow-y: scroll;
-		padding-right: 0.3rem;
+		padding-right: calc(#{$size} * 0.3);
 		color: #fff;
 		transition: all $transition-delay;
 
@@ -285,7 +285,7 @@ body {
 
 	#author {
 		text-align: right;
-		font-size: 1rem;
+		font-size: $size;
 		font-style: italic;
 		color: #ccc;
 		padding-top: 0.8rem;
@@ -300,10 +300,9 @@ body {
 	padding-top: 0.6rem;
 
 	.btn {
-		padding: 0.36rem 0.7rem;
-		background: $body-color;
+		padding: calc(#{$size} * 0.36) calc(#{$size} * 0.7);
 		border-radius: 0.4rem;
-		font-size: 0.9rem;
+		font-size: calc(#{$size} * 0.9);
 		font-weight: 500;
 		cursor: pointer;
 		transform: scale(1);
@@ -331,13 +330,12 @@ body {
 	}
 
 	.tweet {
-		@extend .btn;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 2.3rem;
-		height: 2.3rem;
-		font-size: 1.1rem;
+		width: calc(#{$size} * 2.3);
+		height: calc(#{$size} * 2.3);
+		font-size: calc(#{$size} * 1.1);
 		text-decoration: none;
 		background: #1da1f2;
 		color: #fff;
@@ -409,3 +407,5 @@ body {
 		background: #e9c46a;
 	}
 }
+
+@import 'media';

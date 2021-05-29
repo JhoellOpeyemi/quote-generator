@@ -69,9 +69,8 @@ function changeBackgroundColor() {
 	const random = Math.floor(Math.random() * bgColors.length);
 	const color = bgColors[random];
 
-	console.log(color);
-
-	body.style.background = color;
+	body.style.backgroundImage = color;
+	body.style.backgroundColor = color.slice(35, 42);
 }
 
 // EVENT LISTENER
