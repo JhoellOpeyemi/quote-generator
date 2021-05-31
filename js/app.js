@@ -80,8 +80,8 @@ window.addEventListener('DOMContentLoaded', newQuote);
 
 colorsBtn.forEach((colorBtn) => {
 	colorBtn.addEventListener('click', (e) => {
-		if (e.target.classList.contains('champagne')) {
-			body.style.background = '#FFE5D9';
+		if (e.target.classList.contains('light-coral')) {
+			body.style.background = 'lightcoral';
 		}
 
 		if (e.target.classList.contains('charcoal')) {
